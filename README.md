@@ -14,3 +14,4 @@ Backend
 - SendGrid
 - JsonWebToken
 - TypeORM
+- Bcryptjs
