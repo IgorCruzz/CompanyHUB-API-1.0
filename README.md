@@ -5,7 +5,7 @@ Tecnologias utilizadas
 
 Backend 
 
-- Google Cloud (CI/ CD)
+- Google Cloud CI/ CD)
 - NodeJS
 - Typescript
 - Nestjs
