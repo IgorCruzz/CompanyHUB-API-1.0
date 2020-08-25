@@ -37,7 +37,7 @@ describe('Company', () => {
   })
 
   describe('CompanyCreateController', () => {
-    it('should be able to create an Company.', async () => {
+    it('should be able to create an Company', async () => {
       const req: any = {
         params: {
           id: 1,
