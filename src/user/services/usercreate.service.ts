@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Users } from '../../entities/User.entity'
@@ -19,7 +20,7 @@ export class UserCreateService {
 
   async execute(req: Request): Promise<Users> {
     const { email, name, password } = req.body
-
+    console.log(`OIIIIIIIIIIIIIII ${process.env.OI}`)
     const userEmail = await this.usersRepository.findOne({ email })
 
     if (userEmail) {
