@@ -1,5 +1,15 @@
 steps:
+
+  #CREATE AN IMAGE FROM DOCKERFILE
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/company-hub-286820/fullcycle', '.' ]
+  args: [ 'build', '-t', 'gcr.io/company-hub-286820/fullcycle:latest', '.' ]
+
+  #CREATE AN CONTAINER FROM FULLCYCLE IMAGE
+- name: 'docker'
+  args: ['run', '-d', '--name', 'goapp', gcr.io/company-hub-286820/fullcycle:latest]  
+
+  #TESTING MY UNIT TESTS
+- name: 'docker'
+  args: ['exec', 'goapp', 'test']  
  
    
