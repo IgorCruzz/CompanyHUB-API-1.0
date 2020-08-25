@@ -8,6 +8,9 @@ steps:
 - name: 'docker'
   args: ['run', '--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
 
+- name: 'docker'
+  args: ['exec', 'companyHUB', 'ls']
+
 timeout: 1200s  
 
  
