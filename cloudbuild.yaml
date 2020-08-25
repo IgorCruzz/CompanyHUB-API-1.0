@@ -10,6 +10,11 @@ steps:
 
 - name: 'docker'
   args: ['ps']
+  
+- name: 'docker'
+  args: ['ps']  
+
+
 timeout: 1200s  
 
  
