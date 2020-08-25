@@ -1,7 +1,7 @@
 steps:
-  - name: 'grc.io/cloud-builders/npm'
+  - name: 'grc.io/cloud-builders/npm:10.19.0'
     args: ['install']
 
-  - name: 'grc.io/cloud-builders/npm'
+  - name: 'grc.io/cloud-builders/npm:10.19.0'
     args: ['run', 'test']
    
