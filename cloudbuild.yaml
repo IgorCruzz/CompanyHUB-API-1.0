@@ -9,7 +9,7 @@ steps:
 
   #CREATE AN CONTAINER FROM FULLCYCLE IMAGE
 - name: 'docker'
-  args: ['run', '-d', '--name', 'companyHUB', 'gcr.io/company-hub-286820/fullcycle:latest']    
+  args: ['run', '--name', 'companyHUB', 'gcr.io/company-hub-286820/fullcycle:latest']    
 
   #TESTING MY UNIT TESTS
 - name: 'docker'
