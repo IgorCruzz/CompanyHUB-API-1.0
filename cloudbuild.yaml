@@ -6,10 +6,12 @@ steps:
 
   #CREATE AN CONTAINER FROM FULLCYCLE IMAGE
 - name: 'docker'
-  args: ['run', '--name', 'companyHUBa', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
+  args: ['run', '-d','--name', 'companyHUBa', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
 
 - name: 'docker'
-  args: ['exec', 'companyHUBa', 'ls']
+  args: ['ps']
+
+ 
 
 timeout: 1200s  
 
