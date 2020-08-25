@@ -7,24 +7,13 @@ steps:
          'gcr.io/company-hub-286820/fullcycle:latest', 
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]
-  env:    
-    - '_OI=${_DB_NAME}'
- 
 
   #CREATE AN CONTAINER FROM FULLCYCLE IMAGE
 - name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
-  env:
-    - '_OI=${_DB_NAME}'
-  
-
+ 
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'test']
-  env:
-    - '_OI=${_DB_NAME}'
-    
-
- 
 
 timeout: 1200s  
 

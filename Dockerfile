@@ -9,6 +9,8 @@ COPY package*.json \
  
 RUN npm install
 
+ENV _OI=FODASE
+
 COPY . .
 
  
