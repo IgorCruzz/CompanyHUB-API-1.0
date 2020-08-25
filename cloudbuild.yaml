@@ -6,10 +6,10 @@ steps:
 
   #CREATE AN CONTAINER FROM FULLCYCLE IMAGE
 - name: 'docker'
-  args: ['run', '-d','--name', 'companyHUBa', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
+  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
 
 - name: 'docker'
-  args: ['ps', '-a']
+  args: ['exec', 'companyHUB', 'npm', 'run', 'test']
 
  
 
