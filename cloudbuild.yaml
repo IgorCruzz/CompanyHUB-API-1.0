@@ -8,7 +8,7 @@ steps:
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]
   env:    
-    - 'OI=FULHODUMAPUTA'
+    - '_OI=FULHODUMAPUTA'
 substitutions:
     _OI: 'VAISEFUDER'
 
@@ -16,14 +16,14 @@ substitutions:
 - name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
   env:
-    - 'OI=FULHODUMAPUTA'
+    - '_OI=FULHODUMAPUTA'
 substitutions:
     _OI: 'VAISEFUDER'    
 
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'test']
   env:
-    - 'OI=FULHODUMAPUTA'
+    - '_OI=FULHODUMAPUTA'
 substitutions:
     _OI: 'VAISEFUDER'    
 
