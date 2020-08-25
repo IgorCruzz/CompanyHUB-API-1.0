@@ -11,4 +11,4 @@ RUN npm install
 
 COPY . .
 
-CMD ["yarn", "run", "start:dev", "test", "start:prod"]
+CMD ["npm", "run", "start:dev", "test", "start:prod"]
