@@ -9,7 +9,7 @@ COPY package*.json \
  
 RUN npm install
 
-ENV OI=$_OI
+ENV OI OKAOAKOAKOAOAOK
 
 COPY . .
 
