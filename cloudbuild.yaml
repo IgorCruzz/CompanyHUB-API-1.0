@@ -10,6 +10,6 @@ steps:
 
   #TESTING MY UNIT TESTS
 - name: 'docker'
-  args: ['exec', 'companyHUB', 'test']  
+  args: ['exec', 'companyHUB', 'npm test']  
  
    
