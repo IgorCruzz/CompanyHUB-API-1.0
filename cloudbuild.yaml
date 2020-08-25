@@ -2,7 +2,13 @@ steps:
 
   #CREATE AN IMAGE FROM DOCKERFILE
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/company-hub-286820/fullcycle:latest', '-t', 'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]
+  args: [ 'build', 
+          '--build-arg',
+         'OI=DWDWDFESD', 
+         '-t', 
+         'gcr.io/company-hub-286820/fullcycle:latest', 
+         '-t', 
+         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]
   env:    
     - 'OI=FULHODUMAPUTA'
 
