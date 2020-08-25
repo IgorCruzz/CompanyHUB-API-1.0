@@ -8,6 +8,9 @@ steps:
 - name: 'docker'
   args: ['run', '-d', '--name', 'companyHUB', gcr.io/company-hub-286820/fullcycle:latest]  
 
+- name: 'docker'
+  args: ['ps', '-a']  
+
   #TESTING MY UNIT TESTS
 - name: 'docker'
   args: ['exec', 'companyHUB', 'ls -a']  
