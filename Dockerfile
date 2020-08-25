@@ -4,12 +4,11 @@ WORKDIR /usr/src/app
 
 COPY package*.json \
     nest-cli.json \
-    tsconfig*.json \  
-    yarn.lock\     
+    tsconfig*.json \         
  ./
  
-RUN yarn
+RUN npm install
 
 COPY . .
 
-CMD ["yarn", "start:dev", "test", "test:cov"]
+CMD ["yarn", "run", "start:dev", "test", "start:prod"]
