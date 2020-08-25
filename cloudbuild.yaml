@@ -16,7 +16,7 @@ steps:
   args: ['exec', 'companyHUB', 'npm', 'run', 'test']
   env:
     - 'OI=KPTA'
- secrets:
+secrets:
    secretEnv:
      OI: 'encrypted-password'    
 
