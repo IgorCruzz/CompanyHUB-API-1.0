@@ -12,7 +12,7 @@ steps:
   env:    
     - 'OI=FULHODUMAPUTA'
 substitutions:
-    OI: 'VAISEFUDER'
+    _OI: 'VAISEFUDER'
 
   #CREATE AN CONTAINER FROM FULLCYCLE IMAGE
 - name: 'docker'
@@ -20,14 +20,14 @@ substitutions:
   env:
     - 'OI=FULHODUMAPUTA'
 substitutions:
-    OI: 'VAISEFUDER'    
+    _OI: 'VAISEFUDER'    
 
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'test']
   env:
     - 'OI=FULHODUMAPUTA'
 substitutions:
-    OI: 'VAISEFUDER'    
+    _OI: 'VAISEFUDER'    
 
  
 

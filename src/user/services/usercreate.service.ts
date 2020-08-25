@@ -20,7 +20,7 @@ export class UserCreateService {
 
   async execute(req: Request): Promise<Users> {
     const { email, name, password } = req.body
-    console.log(`OIIIIIIIIIIIIIII ${process.env.OI}`)
+    console.log(`OIIIIIIIIIIIIIII ${process.env._OI}`)
     const userEmail = await this.usersRepository.findOne({ email })
 
     if (userEmail) {
