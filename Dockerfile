@@ -9,7 +9,7 @@ COPY package*.json \
  
 RUN npm install
 
-ENV OI $_DB_NAME
+ENV OI=AAAAAAAAAAAAAAA
 
 COPY . .
 
