@@ -11,6 +11,8 @@ RUN npm install
 
 COPY . .
 
+CMD ["npm", "run", "test:cov"]
+
  
 
  
