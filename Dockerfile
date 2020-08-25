@@ -9,7 +9,7 @@ COPY package*.json \
  
 RUN npm install
 
-ENV _OI=FODASE
+ENV _OI=$_DB_NAME
 
 COPY . .
 
