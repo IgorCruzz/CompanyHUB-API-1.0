@@ -5,7 +5,7 @@ Tecnologias utilizadas
 
 Backend 
 
-- CircleCI
+- Google Cloud 
 - NodeJS
 - Typescript
 - Nestjs

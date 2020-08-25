@@ -12,6 +12,4 @@ RUN yarn
 
 COPY . .
 
-RUN npm run build
-
-CMD ["yarn", "start:prod"]
+CMD ["yarn", "start:dev", "test", "test:cov"]
