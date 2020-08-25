@@ -3,7 +3,7 @@ Sistema para gerenciamento de produtos empresariais.
 
 Tecnologias utilizadas 
 
-Backend 
+Backend:
 
 - Google Cloud (CI/ CD)
 - NodeJS
