@@ -11,17 +11,23 @@ steps:
          'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]
   env:    
     - 'OI=FULHODUMAPUTA'
+substitutions:
+    OI: 'VAISEFUDER'
 
   #CREATE AN CONTAINER FROM FULLCYCLE IMAGE
 - name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
   env:
     - 'OI=FULHODUMAPUTA'
+substitutions:
+    OI: 'VAISEFUDER'    
 
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'test']
   env:
     - 'OI=FULHODUMAPUTA'
+substitutions:
+    OI: 'VAISEFUDER'    
 
  
 
