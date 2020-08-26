@@ -9,7 +9,7 @@ COPY package*.json \
  
 RUN npm install
 
-ARG DB_HOST ${_DB_HOST}
+ENV DB_HOST ${_DB_HOST}
 ENV DB_HOST _DB_HOST
 ENV DB_HOST $_DB_HOST
 ENV DB_USER ggcuzfmgehrtlj
