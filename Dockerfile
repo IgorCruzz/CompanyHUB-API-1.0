@@ -9,12 +9,10 @@ COPY package*.json \
  
 RUN npm install
 
-ENV _DB_HOST ${_DB_HOST}
+ENV DB_HOST ${_DB_HOST}
 ENV DB_USER ggcuzfmgehrtlj
 ENV DB_PASSWORD 9ab5ee3ed7d5902f8cf8422573bb1937c35292478437ef8bdaf17a57827cdd5a
 ENV DB_NAME dd5igj8hv5eb0a
-
- 
 
 COPY . .
 

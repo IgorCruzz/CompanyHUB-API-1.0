@@ -14,7 +14,7 @@ import { Module } from '@nestjs/common'
     TokenModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env._DB_HOST,
+      host: process.env.DB_HOST,
       port: 5432,
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
