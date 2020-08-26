@@ -9,17 +9,12 @@ class Mail {
   constructor() {
     this.transporter = createTransport({
       service: process.env.MAIL_SERVICE,
+      secure: false,
+      ignoreTLS: true,
       auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,
       },
-      secure: false,
-      ignoreTLS: true,
-    })
-
-    this.transporter.verify((err, success) => {
-      if (err) console.error(err)
-      console.log('Your config is correct')
     })
 
     this.configureTemplates()
