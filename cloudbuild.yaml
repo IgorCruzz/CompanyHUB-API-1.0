@@ -7,10 +7,14 @@ steps:
          'gcr.io/company-hub-286820/fullcycle:latest', 
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]
+  env:
+    - 'DB_HOST=ec2-34-200-15-192.compute-1.amazonaws.com'
 
   #CREATE AN CONTAINER FROM FULLCYCLE IMAGE
 - name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
+  env:
+    - 'DB_HOST=ec2-34-200-15-192.compute-1.amazonaws.com'
  
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'start']
