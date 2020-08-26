@@ -13,6 +13,13 @@ class Mail {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,
       },
+      secure: false,
+      ignoreTLS: true,
+    })
+
+    this.transporter.verify((err, success) => {
+      if (err) console.error(err)
+      console.log('Your config is correct')
     })
 
     this.configureTemplates()
