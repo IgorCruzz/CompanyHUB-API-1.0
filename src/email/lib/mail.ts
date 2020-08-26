@@ -9,8 +9,6 @@ class Mail {
   constructor() {
     this.transporter = createTransport({
       service: process.env.MAIL_SERVICE,
-      secure: false,
-      ignoreTLS: true,
       auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,
