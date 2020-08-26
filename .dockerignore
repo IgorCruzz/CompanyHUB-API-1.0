@@ -20,4 +20,4 @@ LICENSE
 .sonarcloud*
 .editorconfig
 commitlint*
-*.gql
+ 
