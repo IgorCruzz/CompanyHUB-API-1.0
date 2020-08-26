@@ -19,5 +19,5 @@ LICENSE
 *.md
 .sonarcloud*
 .editorconfig
-commitlint*
+ 
  
