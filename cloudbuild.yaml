@@ -4,7 +4,10 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build',  
          '--build-arg',
-         'REDIS_PASS=${_DB_HOST}',               
+         'DB_HOST=${_DB_HOST}', 
+         'DB_USER=${_DB_USER}',
+         'DB_PASSWORD=${_DB_PASSWORD}',
+         'DB_NAME=${_DB_NAME}',             
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:latest', 
          '-t', 
