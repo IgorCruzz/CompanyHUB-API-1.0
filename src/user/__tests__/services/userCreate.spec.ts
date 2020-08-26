@@ -77,7 +77,7 @@ describe('User', () => {
       'updated_at',
     ])
     expect(repo.findOne).toBeCalledTimes(1)
-    expect(repo.findOne).toBeCalledWith({ email: 'email@gmail.com' })
+    expect(repo.findOne).toBeCalledWith({ email: 'igorskt2009@gmail.com' })
     expect(repo.save).toBeCalledTimes(1)
   })
 
