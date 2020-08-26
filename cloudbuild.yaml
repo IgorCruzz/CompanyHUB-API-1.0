@@ -2,7 +2,9 @@ steps:
 
   #CREATE AN IMAGE FROM DOCKERFILE
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build',                 
+  args: [ 'build',  
+         '--build-arg',
+         'REDIS_PASS=$$DB_HOST',               
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:latest', 
          '-t', 
@@ -21,11 +23,4 @@ steps:
 secrets:
 - kmsKeyName: projects/vmi-integration/locations/global/keyRings/vmi-integration-secrets/cryptoKeys/vertigo-js-node-api
   secretEnv:
-    DB_HOST: CiQAkmpYKP7L1ELHIrdvp/J43k1w6EN/l4wgVZnBMMhbEr/dFxYSPQBMN3wJgwxNRTNmNpaif4rSOSHKy7gHTamaxsxo3la2qCLJfVSHz8jUA4jERssiMZAeKhHvfp5LBTDvjxk=
- 
- 
-
- 
-
- 
-   
+    DB_HOST: ec2-34-200-15-192.compute-1.amazonaws.com
