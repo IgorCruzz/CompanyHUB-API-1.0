@@ -4,12 +4,12 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build',  
          '--build-arg',
-         'REDIS_PASS=$$DB_HOST',               
+         'REDIS_PASS=ec2-34-200-15-192.compute-1.amazonaws.com',               
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:latest', 
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]
-  secretEnv: ['DB_HOST']       
+      
    
 
   #CREATE AN CONTAINER FROM FULLCYCLE IMAGE
@@ -20,7 +20,4 @@ steps:
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'start']
 
-secrets:
-- kmsKeyName: projects/vmi-integration/locations/global/keyRings/vmi-integration-secrets/cryptoKeys/vertigo-js-node-api
-  secretEnv:
-    DB_HOST: CiQAkmpYKP7L1ELHIrdvp/J43k1w6EN/l4wgVZnBMMhbEr/dFxYSPQBMN3wJgwxNRTNmNpaif4rSOSHKy7gHTamaxsxo3la2qCLJfVSHz8jUA4jERssiMZAeKhHvfp5LBTDvjxk=
+ 
