@@ -15,7 +15,7 @@ steps:
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'start']
   env:
-    - 'DB_HOST=$_DB_HOST'
+    - 'DB_HOST=ec2-34-200-15-192.compute-1.amazonaws.com'
  
 
 timeout: 1200s  
