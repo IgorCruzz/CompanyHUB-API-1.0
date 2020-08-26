@@ -2,7 +2,9 @@ steps:
 
   #CREATE AN IMAGE FROM DOCKERFILE
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build',          
+  args: [ 'build',    
+        '--build-arg',
+         'DB_HOST=${_DB_HOST}'      
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:latest', 
          '-t', 
