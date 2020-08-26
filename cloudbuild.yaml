@@ -2,29 +2,30 @@ steps:
 
   #CREATE AN IMAGE FROM DOCKERFILE
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build',    
-        '--build-arg',
-         'DB_HOST=ec2-34-200-15-192.compute-1.amazonaws.com',     
+  args: [ 'build',                 
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:latest', 
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]
-  env:
-    - 'DB_HOST=ec2-34-200-15-192.compute-1.amazonaws.com'
+  secretEnv: ['DB_HOST']       
+   
 
   #CREATE AN CONTAINER FROM FULLCYCLE IMAGE
 - name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
-  env:
-    - 'DB_HOST=ec2-34-200-15-192.compute-1.amazonaws.com'
+  
  
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'start']
-  env:
-    - 'DB_HOST=ec2-34-200-15-192.compute-1.amazonaws.com'
+
+secrets:
+- kmsKeyName: projects/vmi-integration/locations/global/keyRings/vmi-integration-secrets/cryptoKeys/vertigo-js-node-api
+  secretEnv:
+    DB_HOST: CiQAkmpYKP7L1ELHIrdvp/J43k1w6EN/l4wgVZnBMMhbEr/dFxYSPQBMN3wJgwxNRTNmNpaif4rSOSHKy7gHTamaxsxo3la2qCLJfVSHz8jUA4jERssiMZAeKhHvfp5LBTDvjxk=
+ 
  
 
-timeout: 1200s  
+ 
 
  
    
