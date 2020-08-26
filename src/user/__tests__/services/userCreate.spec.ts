@@ -12,7 +12,7 @@ import * as crypto from 'crypto'
 const OneUser = {
   id: 1,
   name: 'igor',
-  email: 'email@gmail.com',
+  email: 'igorskt2009@gmail.com',
   password_hash: Bcrypt.hashSync('password', 8),
   activation: false,
   administrator: false,
@@ -60,7 +60,7 @@ describe('User', () => {
     const req: any = {
       body: {
         name: 'igor',
-        email: 'email@gmail.com',
+        email: 'igorskt2009@gmail.com',
         password: '123456789',
         confirmPassword: '123456789',
       },
