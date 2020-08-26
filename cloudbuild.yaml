@@ -15,7 +15,7 @@ steps:
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'start']
   env:
-    'DB_HOST=$_DB_HOST'
+    - 'DB_HOST=$_DB_HOST'
  
 
 timeout: 1200s  
