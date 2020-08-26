@@ -4,7 +4,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build',    
         '--build-arg',
-         'DB_HOST=${_DB_HOST}'      
+         'DB_HOST=${_DB_HOST}',     
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:latest', 
          '-t', 
