@@ -8,8 +8,6 @@ services:
       - "3333:3333"
     volumes:      
       - ./:/usr/src/app
-    env_files:
-      - .env  
     
  
       
