@@ -42,12 +42,9 @@ steps:
         'deploy', 
         'company-hub', 
         '--image', 
-        'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA',
-        '--region',
-        'us-central1',
+        'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA',      
         '--platform',
-        'managed',
-        '--allow-unauthenticated']    
+        'managed']    
     
   
 
