@@ -1,0 +1,35 @@
+steps:
+
+  #CREATE AN IMAGE FROM DOCKERFILE
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build',  
+         '--build-arg',
+         'DB_HOST=${_DB_HOST}', 
+         '--build-arg',
+         'DB_USER=${_DB_USER}',
+         '--build-arg',
+         'DB_PASSWORD=${_DB_PASSWORD}',
+         '--build-arg',
+         'DB_NAME=${_DB_NAME}', 
+         '--build-arg',
+         'MAIL_PASS=${_MAIL_PASS}',
+         '--build-arg',
+         'MAIL_USER=${_MAIL_USER}',
+         '--build-arg',
+         'MAIL_SERVICE=${_MAIL_SERVICE}',            
+         '-t', 
+         'gcr.io/company-hub-286820/fullcycle:latest', 
+         '-t', 
+         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]
+      
+   
+
+  #CREATE AN CONTAINER FROM FULLCYCLE IMAGE
+- name: 'docker'
+  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
+  
+ 
+- name: 'docker'
+  args: ['exec', 'companyHUB', 'npm', 'run', 'test']
+
+ 
