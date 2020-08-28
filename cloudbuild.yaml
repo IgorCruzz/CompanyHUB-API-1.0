@@ -41,7 +41,7 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['run', 
         'deploy', 
-        'company-HUB', 
+        'company-hub', 
         '--image', 
         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA',
         '--region',
