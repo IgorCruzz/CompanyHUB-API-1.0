@@ -4,10 +4,11 @@ WORKDIR /usr/src/app
 
 COPY package*.json \
     nest-cli.json \
-    tsconfig*.json \         
+    tsconfig*.json \  
+    yarn.lock \       
  ./
  
-RUN npm install
+RUN yarn
 ARG DB_HOST
 ARG DB_USER
 ARG DB_PASSWORD
@@ -25,9 +26,9 @@ ENV MAIL_PASS ${MAIL_PASS}
 
 COPY . .
 
-RUN npm run build
+RUN yarn build
 
-CMD ["npm", "run", "start:prod"]
+CMD ["yarn", "start:prod"]
 
  
 
