@@ -25,8 +25,11 @@ ENV MAIL_USER ${MAIL_USER}
 ENV MAIL_PASS ${MAIL_PASS}
 
 COPY . .
+EXPOSE 8080
 
 RUN yarn build
+
+
 
 CMD ["yarn", "start:prod"]
 
