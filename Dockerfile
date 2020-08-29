@@ -25,6 +25,10 @@ ENV MAIL_PASS ${MAIL_PASS}
 
 COPY . .
 
+RUN npm run build
+
+CMD ["npm", "run", "start:prod"]
+
  
 
  
