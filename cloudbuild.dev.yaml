@@ -20,8 +20,7 @@ steps:
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:latest', 
          '-t', 
-         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '-f',
-         'Dockerfile.dev' ]
+         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]
       
    
 
