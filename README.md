@@ -6,8 +6,8 @@ Tecnologias utilizadas
 Demo: https://chfrontend-4nfuo3znka-uc.a.run.app
 
 Backend:
-
-- Solid
+ 
+- Solid 
 - Docker
 - Google Cloud (CI/ CD)
 - NodeJS
