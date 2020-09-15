@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import Mail from '../lib/mail'
 
 class RegisterMail {
@@ -9,6 +10,7 @@ class RegisterMail {
       template: 'register',
       context: {
         token: data.token,
+        url: process.env.URL,
       },
     })
   }
