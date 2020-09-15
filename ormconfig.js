@@ -17,5 +17,6 @@ module.exports = {
     ssl: {
       rejectUnauthorized: false,
     },
+    socketPath: '/cloudsql/company-hub-286820:us-central1:company',
   },
 }
