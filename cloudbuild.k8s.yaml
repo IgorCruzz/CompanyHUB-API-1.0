@@ -4,6 +4,8 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build',  
          '--build-arg',
+         'URL=${_URL}',
+         '--build-arg',
          'DB_HOST=${_DB_HOST}', 
          '--build-arg',
          'DB_USER=${_DB_USER}',
