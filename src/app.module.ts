@@ -12,25 +12,7 @@ import { Module } from '@nestjs/common'
 @Module({
   imports: [
     TokenModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST,
-      port: 5432,
-      username: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      entities: ['dist/**/*.entity.js'],
-      migrations: ['dist/migration/**/*.js'],
-      cli: {
-        migrationsDir: 'src/migration',
-      },
-      ssl: true,
-      extra: {
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      },
-    }),
+    TypeOrmModule.forRoot(),
     SessionModule,
     ProductModule,
     ServicesModule,
