@@ -29,6 +29,10 @@ steps:
 - name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
  
+  - name: 'docker'
+    args: ['exec', 'companyHUB', 'npm', 'run', 'lint']
+  
+
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'test']
 
