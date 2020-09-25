@@ -1,3 +1,4 @@
+import { query } from 'express'
 import {
   MigrationInterface,
   QueryRunner,
@@ -27,5 +28,7 @@ export class updateProduct1596750145468 implements MigrationInterface {
     )
   }
 
-  public async down(): Promise<void> {}
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropTable('products')
+  }
 }

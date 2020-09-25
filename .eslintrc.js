@@ -26,7 +26,8 @@ module.exports = {
     "@typescript-eslint/camelcase": 'off',
     "class-methods-use-this": "off",
     'no-useless-constructor': 'off',
-    'no-unused-expressions': 'off'
+    'no-unused-expressions': 'off',
+    '@typescript-eslint/no-unused-vars': 'off'
    
   },
 };
