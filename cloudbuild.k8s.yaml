@@ -33,7 +33,7 @@ steps:
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'lint']
 
-  - name: 'docker'
+- name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'test']
 
 - name: 'docker'
