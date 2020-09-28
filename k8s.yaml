@@ -36,7 +36,7 @@ spec:
           - name: DB_HOST
             valueFrom:
               secretKeyRef:
-                name: 10.43.128.3 
+                name: 35.202.78.162 
                 key: db_host                      
 ---
 
