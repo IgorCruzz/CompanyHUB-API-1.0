@@ -16,16 +16,7 @@ spec:
         - name: companyhub
           image: 'gcr.io/company-hub-286820/fullcycle:latest'
           ports:
-            - containerPort: 8080   
-          env:
-          - name: DB_HOST
-            value: 10.43.128.3 
-          - name: DB_PASS
-            value: narutoplayers
-          - name: DB_USER
-            value: companyhub
-          - name: DB_NAME
-            value: companyhub                 
+            - containerPort: 8080                            
                           
 ---
 
