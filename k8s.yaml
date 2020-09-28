@@ -17,6 +17,27 @@ spec:
           image: 'gcr.io/company-hub-286820/fullcycle:latest'
           ports:
             - containerPort: 8080
+          env:
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                  name: companyhub
+                  key: username
+          - name: DB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: narutoplayers
+                key: password
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: companyhub
+                key: database
+          - name: DB_HOST
+            valueFrom:
+              secretKeyRef:
+                name: 10.43.128.3 
+                key: db_host                      
 ---
 
 apiVersion: v1

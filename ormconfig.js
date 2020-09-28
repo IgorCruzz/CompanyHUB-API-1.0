@@ -2,11 +2,11 @@ require('dotenv').config
 
 module.exports = {
   type: 'postgres',
-  host: '35.202.78.162',
+  host: process.env.DB_HOST,
   port: 5432, 
-  username: 'companyhub',
-  password: 'narutoplayers',
-  database: 'companyhub',
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
   entities: ['dist/**/*.entity.js'],
   migrations: ['dist/migration/**/*.js'],
   cli: {
