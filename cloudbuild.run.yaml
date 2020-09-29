@@ -39,7 +39,7 @@ steps:
   args:
     - -c
     - |
-      /workspace/cloud_sql_proxy -dir=/workspace -instances=projectid:region:instanceid & sleep 2 && \
+      /workspace/cloud_sql_proxy -dir=/workspace -instances=/cloudsql/company-hub-286820:us-central1:company & sleep 2 && \
       docker run -v /workspace:/root \
     
 
