@@ -21,10 +21,28 @@ steps:
          'gcr.io/company-hub-286820/fullcycle:latest', 
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]   
+
+         
  
 - name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']  
+
   
+- id: proxy-install
+  name: alpine:3
+  entrypoint: sh
+  args:
+    - '-c'
+    - 'wget -O /workspace/cloud_sql_proxy https://storage.googleapis.com/cloudsql-proxy/v1.16/cloud_sql_proxy.linux.386 && chmod +x /workspace/cloud_sql_proxy'
+
+- id: migrate
+  name: node:dubnium
+  entrypoint: sh
+  args:
+    - '-c'
+    - '(/workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company & sleep 2)'
+  timeout: '1200s'
+    
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'test']
 
