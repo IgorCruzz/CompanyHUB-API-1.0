@@ -32,7 +32,7 @@ steps:
   args: ['exec', 'companyHUB', 'npm', 'run', 'migration:run']
   
 - name: 'docker'
-  args: ['exec', 'companyHUB', 'npm', 'run', 'npm', 'start:prod']
+  args: ['exec', 'companyHUB', 'npm', 'run', 'start:prod']
   
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'test']
