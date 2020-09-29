@@ -40,7 +40,7 @@ steps:
   entrypoint: sh
   args:
     - '-c'
-    - '(/workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company & sleep 2)'
+    - '/workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company=tcp:5432'
   timeout: '1200s'
     
 - name: 'docker'
