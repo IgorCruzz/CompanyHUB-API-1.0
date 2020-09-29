@@ -1,5 +1,20 @@
 steps:
 
+- id: 'proxy-install'
+  name: alpine:3
+  entrypoint: sh
+  args:
+    - '-c'
+    - 'wget -O /workspace/cloud_sql_proxy https://storage.googleapis.com/cloudsql-proxy/v1.16/cloud_sql_proxy.linux.386 && chmod +x /workspace/cloud_sql_proxy'
+
+ 
+- name: 'gcr.io/cloudsql-docker/gce-proxy:1.11'
+  entrypoint: sh
+  args:
+    - '-c'
+    - '/cloud_sql_proxy --dir=/cloudsql -instances=company-hub-286820:us-central1:company=tcp:0.0.0.0:5432 & sleep 2'
+  timeout: '1200s'
+
   #CREATE AN IMAGE FROM DOCKERFILE
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build',  
@@ -28,20 +43,7 @@ steps:
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']  
 
   
-- id: 'proxy-install'
-  name: alpine:3
-  entrypoint: sh
-  args:
-    - '-c'
-    - 'wget -O /workspace/cloud_sql_proxy https://storage.googleapis.com/cloudsql-proxy/v1.16/cloud_sql_proxy.linux.386 && chmod +x /workspace/cloud_sql_proxy'
 
- 
-- name: 'gcr.io/cloudsql-docker/gce-proxy:1.11'
-  entrypoint: sh
-  args:
-    - '-c'
-    - '/cloud_sql_proxy --dir=/cloudsql -instances=company-hub-286820:us-central1:company=tcp:127.0.0.1:5432 & sleep 2'
-  timeout: '1200s'
 
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'migration:run']
