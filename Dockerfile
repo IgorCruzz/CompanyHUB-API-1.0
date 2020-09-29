@@ -29,11 +29,10 @@ ENV MAIL_PASS ${MAIL_PASS}
 COPY . .
 
 
-RUN yarn build
+RUN yarn build 
 
  
-
- 
+ CMD ["yarn", "start:prod"]
 
  
 
