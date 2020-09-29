@@ -42,10 +42,8 @@ steps:
     - '-c'
     - '/cloud_sql_proxy --dir=/cloudsql -instances=company-hub-286820:us-central1:company=tcp:0.0.0.0:5432 & sleep 2'
   timeout: '1200s'
-    
-- name: 'docker'
-  args: ['exec', 'companyHUB', 'npm', 'run', 'test']
-
+  
+  
 - name: 'docker'
   args: ['push', 'gcr.io/company-hub-286820/fullcycle:latest']
 
