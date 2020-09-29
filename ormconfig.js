@@ -2,7 +2,9 @@ require('dotenv').config
 
 module.exports = {
   type: 'postgres',   
-  host: '35.202.78.162',
+  extra: {
+    socketPath: '/cloudsql/company-hub-286820:us-central1:company'
+  },
   port: 5432, 
   username: 'companyhub',
   password: 'narutoplayers',
