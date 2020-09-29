@@ -12,7 +12,7 @@ steps:
   entrypoint: sh
   args:
     - '-c'
-    - '/cloud_sql_proxy --dir=/cloudsql -instances=company-hub-286820:us-central1:company=tcp:127.0.0.1:5432 & sleep 2'
+    - '/workspace/cloud_sql_proxy --dir=/cloudsql -instances=company-hub-286820:us-central1:company=tcp:0.0.0.0:5432 & sleep 2'
   timeout: '1200s'
 
   #CREATE AN IMAGE FROM DOCKERFILE
@@ -41,9 +41,6 @@ steps:
  
 - name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']  
-
-  
-
 
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'migration:run']
