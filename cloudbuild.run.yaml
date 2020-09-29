@@ -34,9 +34,8 @@ steps:
   waitFor: ['-'] 
 
 - name: 'docker'
-  args: 
-    - '-c'
-    - '/workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company & sleep 2)  && exec companyHUB npm run migration:run'
+  args:    
+    - 'exec companyHUB npm run migration:run'
   
 - name: 'docker'
   args: ['exec', 'companyHUB', 'npm', 'run', 'start:prod']
