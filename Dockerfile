@@ -29,7 +29,7 @@ ENV MAIL_PASS ${MAIL_PASS}
 COPY . .
 
 
- 
+RUN yarn build
 
  
 
