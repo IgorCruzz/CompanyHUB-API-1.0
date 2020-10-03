@@ -1,19 +1,15 @@
 steps:
-
-- id: 'proxy-install'
-  name: alpine:3
-  entrypoint: sh
+  
+- name: "gcr.io/cloudsql-docker/gce-proxy:1.16"
+  id: proxy
+  waitFor: ["-"]
+  volumes:
+    - name: db
+      path: "/cloudsql"
   args:
-    - '-c'
-    - 'wget -O /workspace/cloud_sql_proxy https://storage.googleapis.com/cloudsql-proxy/v1.16/cloud_sql_proxy.linux.386 && chmod +x /workspace/cloud_sql_proxy'
-
- 
-- name: 'gcr.io/cloudsql-docker/gce-proxy:1.11'
-  entrypoint: sh
-  args:
-    - '-c'
-    - '/workspace/cloud_sql_proxy --dir=/cloudsql -instances=company-hub-286820:us-central1:company=tcp:0.0.0.0:5432 & sleep 2'
-  timeout: '1200s'
+    - "/cloud_sql_proxy"
+    - "-dir=/cloudsql"
+    - "-instances=company-hub-286820:us-central1:company"  
 
   #CREATE AN IMAGE FROM DOCKERFILE
 - name: 'gcr.io/cloud-builders/docker'
