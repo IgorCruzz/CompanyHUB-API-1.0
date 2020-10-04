@@ -32,7 +32,10 @@ COPY . .
 RUN yarn build 
 
  
- 
+RUN yarn migration:run
+
+
+CMD ["yarn", "start:prod"]
  
 
  
