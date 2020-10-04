@@ -5,7 +5,7 @@ steps:
   entrypoint: sh
   args:
     - -c
-    - 'wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy &&  chmod +x cloud_sql_proxy'
+    - 'wget -O /workspace/cloud_sql_proxy https://storage.googleapis.com/cloudsql-proxy/v1.16/cloud_sql_proxy.linux.386 &&  chmod +x /workspace/cloud_sql_proxy'
   waitFor: ['-'] 
 
 - id: testing
@@ -14,7 +14,7 @@ steps:
   entrypoint: sh
   args:
     - -c
-    - '( ./cloud_sql_proxy -instances=company-hub-286820:us-central1:company=tcp:5432 & sleep 2)'
+    - '( /workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company=tcp:5432 & sleep 2)'
   waitFor: ['proxy-install']   
 
 
