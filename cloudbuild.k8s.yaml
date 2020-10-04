@@ -2,15 +2,7 @@ steps:
 
   #CREATE AN IMAGE FROM DOCKERFILE
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build',  
-         '--build-arg',
-         'DB_HOST=${_DB_HOST}', 
-         '--build-arg',
-         'DB_USER=${_DB_USER}',
-         '--build-arg',
-         'DB_PASSWORD=${_DB_PASSWORD}',
-         '--build-arg',
-         'DB_NAME=${_DB_NAME}', 
+  args: [ 'build',          
          '--build-arg',
          'MAIL_PASS=${_MAIL_PASS}',
          '--build-arg',
@@ -20,26 +12,20 @@ steps:
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:latest', 
          '-t', 
-         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]   
-  
+         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ] 
  
-
-
-- id: install-proxy
-  name: gcr.io/cloud-builders/wget
+- name: gcr.io/cloud-builders/wget
   entrypoint: bash
   args:
     - -c
     - wget -O /workspace/cloud_sql_proxy https://storage.googleapis.com/cloudsql-proxy/v1.15/cloud_sql_proxy.linux.386 && chmod +x /workspace/cloud_sql_proxy
-  waitFor: ['-'] 
-
-- id: migrate
-  name: gcr.io/cloud-builders/docker
+ 
+- name: gcr.io/cloud-builders/docker
   entrypoint: bash
   args:
     - -c
     - |
-      /workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company & sleep 2 && \
+      /workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company=tcp:5432 & sleep 2 && \
       docker run -v /workspace:/root \      
   timeout: '1200s'
   waitFor: [build, install-proxy]  
