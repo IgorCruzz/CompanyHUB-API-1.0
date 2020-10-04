@@ -1,18 +1,5 @@
 steps:
 
-  #CREATE AN IMAGE FROM DOCKERFILE
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build',          
-         '--build-arg',
-         'MAIL_PASS=${_MAIL_PASS}',
-         '--build-arg',
-         'MAIL_USER=${_MAIL_USER}',
-         '--build-arg',
-         'MAIL_SERVICE=${_MAIL_SERVICE}',            
-         '-t', 
-         'gcr.io/company-hub-286820/fullcycle:latest', 
-         '-t', 
-         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ] 
  
 - name: gcr.io/cloud-builders/wget
   entrypoint: bash
@@ -27,7 +14,22 @@ steps:
     - |
       /workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company=tcp:5432 & sleep 2            
   timeout: '1200s'
- 
+
+
+  #CREATE AN IMAGE FROM DOCKERFILE
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build',          
+         '--build-arg',
+         'MAIL_PASS=${_MAIL_PASS}',
+         '--build-arg',
+         'MAIL_USER=${_MAIL_USER}',
+         '--build-arg',
+         'MAIL_SERVICE=${_MAIL_SERVICE}',            
+         '-t', 
+         'gcr.io/company-hub-286820/fullcycle:latest', 
+         '-t', 
+         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]   
+
 - name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']      
  
