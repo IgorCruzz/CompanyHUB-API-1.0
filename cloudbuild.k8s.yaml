@@ -36,13 +36,16 @@ steps:
   waitFor: ['-'] 
 
 - id: testing
-  name: 'docker'
+  name: 'gcr.io/company-hub-286820/fullcycle:latest'
   timeout: 1000s
   entrypoint: sh
   args:
     - -c
-    - '( /workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company=tcp:5432 & sleep 2) && exec companyHUB npm run migration:run'
+    - '( /workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company=tcp:5432 & sleep 2)'
   waitFor: ['proxy-install']    
+
+- name: 'docker'
+  args: ['exec', 'companyHUB', 'npm', 'run', 'migration:run']
   
  
 - name: 'docker'
