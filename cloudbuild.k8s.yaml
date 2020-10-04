@@ -28,7 +28,6 @@ steps:
       /workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company=tcp:5432 & sleep 2 && \
       docker run -v /workspace:/root \      
   timeout: '1200s'
-  waitFor: [build, install-proxy]  
  
 - name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']      
