@@ -44,6 +44,9 @@ steps:
 - name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']  
   waitFor: ['testing'] 
+
+- name: 'docker'
+  args: ['exec', 'companyHUB', 'npm', 'run', 'migration:run']
  
 - name: 'docker'
   args: ['push', 'gcr.io/company-hub-286820/fullcycle:latest']
