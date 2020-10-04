@@ -28,20 +28,22 @@ steps:
   entrypoint: sh
   args:
     - -c
-    - 'wget -O /cloud_sql_proxy https://storage.googleapis.com/cloudsql-proxy/v1.16/cloud_sql_proxy.linux.386 &&  chmod +x /workspace/cloud_sql_proxy'
+    - 'wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy &&  chmod +x cloud_sql_proxy'
   waitFor: ['-'] 
-         
- 
-- name: 'docker'
-  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']  
- 
-- name: python:3.7
-  timeout: 100s
+
+- id: testing
+  name: python:3.7
+  timeout: 1000s
   entrypoint: sh
   args:
     - -c
     - '(/cloud_sql_proxy -instances=company-hub-286820:us-central1:company & sleep 2)'
-  waitFor: ['proxy-install'] 
+  waitFor: ['proxy-install']   
+ 
+- name: 'docker'
+  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']  
+  waitFor: ['testing']  
+
 
 - name: 'docker'
   args: ['ps', '-a']
