@@ -23,26 +23,29 @@ steps:
          'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]   
   
  
-- name: 'docker'
-  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']  
 
 
-- id: proxy-install
-  name: 'gcr.io/company-hub-286820/fullcycle:latest'
-  entrypoint: sh
+- id: install-proxy
+  name: gcr.io/cloud-builders/wget
+  entrypoint: bash
   args:
     - -c
-    - 'wget -O /workspace/cloud_sql_proxy https://storage.googleapis.com/cloudsql-proxy/v1.16/cloud_sql_proxy.linux.386 &&  chmod +x /workspace/cloud_sql_proxy'
+    - wget -O /workspace/cloud_sql_proxy https://storage.googleapis.com/cloudsql-proxy/v1.15/cloud_sql_proxy.linux.386 && chmod +x /workspace/cloud_sql_proxy
   waitFor: ['-'] 
 
- 
-- name: 'docker'
-  timeout: 12200s
-  entrypoint: sh
+- id: migrate
+  name: gcr.io/cloud-builders/docker
+  entrypoint: bash
   args:
     - -c
-    - '( /workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company=tcp:5432 & sleep 2) && docker exec companyHUB npm run migration:run'
-  waitFor: ['proxy-install']     
+    - |
+      /workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company & sleep 2 && \
+      docker run -v /workspace:/root \      
+  timeout: '1200s'
+  waitFor: [build, install-proxy]  
+ 
+- name: 'docker'
+  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']      
  
 - name: 'docker'
   args: ['push', 'gcr.io/company-hub-286820/fullcycle:latest']
