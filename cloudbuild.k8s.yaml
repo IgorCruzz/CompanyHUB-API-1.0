@@ -5,14 +5,14 @@ steps:
   entrypoint: bash
   args:
     - -c
-    - wget -O /workspace/cloud_sql_proxy https://storage.googleapis.com/cloudsql-proxy/v1.15/cloud_sql_proxy.linux.386 && chmod +x /workspace/cloud_sql_proxy
+    - wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy && chmod +x cloud_sql_proxy
+
  
 - name: gcr.io/cloud-builders/docker
   entrypoint: bash
   args:
     - -c
-    - |
-      /workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company=tcp:5432 & sleep 2            
+    - ./cloud_sql_proxy -instances=company-hub-286820:us-central1:company=tcp:5432              
   timeout: '1200s'
 
 
