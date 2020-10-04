@@ -37,7 +37,7 @@ steps:
   entrypoint: sh
   args:
     - -c
-    - '(/cloud_sql_proxy -instances=company-hub-286820:us-central1:company & sleep 2)'
+    - '( ./cloud_sql_proxy -instances=company-hub-286820:us-central1:company=tcp:5432 & sleep 2)'
   waitFor: ['proxy-install']   
  
 - name: 'docker'
