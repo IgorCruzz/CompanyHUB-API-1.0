@@ -29,9 +29,7 @@ steps:
   args:
     - -c
     - 'wget -O /workspace/cloud_sql_proxy https://storage.googleapis.com/cloudsql-proxy/v1.16/cloud_sql_proxy.linux.386 &&  chmod +x /workspace/cloud_sql_proxy'
-  waitFor: ['-']
-      
-               
+  waitFor: ['-'] 
          
  
 - name: 'docker'
