@@ -1,15 +1,5 @@
 steps:
-  
-- name: "gcr.io/cloudsql-docker/gce-proxy:1.16"
-  id: proxy
-  waitFor: ["-"]
-  volumes:
-    - name: db
-      path: "/cloudsql"
-  args:
-    - "/cloud_sql_proxy"
-    - "-dir=/cloudsql"
-    - "-instances=company-hub-286820:us-central1:company"  
+
 
   #CREATE AN IMAGE FROM DOCKERFILE
 - name: 'gcr.io/cloud-builders/docker'
@@ -34,6 +24,14 @@ steps:
          'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]   
 
          
+         
+- id: cmd-with-proxy
+  name: 'docker'
+  timeout: 1200s
+  entrypoint: sh
+  args:
+    - -c
+    - '(/workspace/cloud_sql_proxy -dir=/workspace -instances=company-hub-286820:us-central1:company & sleep 2)'         
  
 - name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']  
