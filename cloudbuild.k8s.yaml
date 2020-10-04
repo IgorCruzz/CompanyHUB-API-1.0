@@ -1,10 +1,26 @@
 steps:
 
+  - id: proxy-install
+  name: alpine:3.10
+  entrypoint: sh
+  args:
+    - -c
+    - 'wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy &&  chmod +x cloud_sql_proxy'
+  waitFor: ['-'] 
+
+- id: testing
+  name: python:3.7
+  timeout: 1000s
+  entrypoint: sh
+  args:
+    - -c
+    - '( ./cloud_sql_proxy -instances=company-hub-286820:us-central1:company=tcp:5432 & sleep 2)'
+  waitFor: ['proxy-install']   
+
+
   #CREATE AN IMAGE FROM DOCKERFILE
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build',  
-         '--build-arg',
-         'URL=${_URL}',
          '--build-arg',
          'DB_HOST=${_DB_HOST}', 
          '--build-arg',
@@ -22,20 +38,13 @@ steps:
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:latest', 
          '-t', 
-         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]
-      
-   
+         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]   
+  
  
 - name: 'docker'
-  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
+  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']  
+  waitFor: ['testing'] 
  
- 
-- name: 'docker'
-  args: ['exec', 'companyHUB', 'npm', 'run', 'lint']
-
-- name: 'docker'
-  args: ['exec', 'companyHUB', 'npm', 'run', 'test']
-
 - name: 'docker'
   args: ['push', 'gcr.io/company-hub-286820/fullcycle:latest']
 
