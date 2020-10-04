@@ -1,6 +1,6 @@
 steps:
 
-  - id: proxy-install
+- id: proxy-install
   name: alpine:3.10
   entrypoint: sh
   args:
