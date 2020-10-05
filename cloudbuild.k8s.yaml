@@ -1,24 +1,15 @@
 steps:
-
- 
-- name: gcr.io/cloud-builders/wget
-  entrypoint: bash
-  args:
-    - -c
-    - wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy && chmod +x cloud_sql_proxy
-
- 
-- name: gcr.io/cloudsql-docker/gce-proxy:1.17
-  entrypoint: bash
-  args:
-    - -c
-    - /cloud_sql_proxy -instances=company-hub-286820:us-central1:company=tcp:5432              
-  timeout: '1200s'
-
-
-  #CREATE AN IMAGE FROM DOCKERFILE
+   
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build',          
+  args: [ 'build',  
+         '--build-arg',
+         'DB_HOST=${_DB_HOST}', 
+         '--build-arg',
+         'DB_USER=${_DB_USER}',
+         '--build-arg',
+         'DB_PASSWORD=${_DB_PASSWORD}',
+         '--build-arg',
+         'DB_NAME=${_DB_NAME}', 
          '--build-arg',
          'MAIL_PASS=${_MAIL_PASS}',
          '--build-arg',
@@ -28,10 +19,17 @@ steps:
          '-t', 
          'gcr.io/company-hub-286820/fullcycle:latest', 
          '-t', 
-         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '.' ]   
+         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '-f',
+         'Dockerfile.dev', '.' ]   
 
 - name: 'docker'
-  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']      
+  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest']  
+
+- name: 'docker'
+  args: ['exec', 'companyHUB', 'yarn', 'lint']
+
+- name: 'docker'
+  args: ['exec', 'companyHUB', 'yarn', 'test']
  
 - name: 'docker'
   args: ['push', 'gcr.io/company-hub-286820/fullcycle:latest']
