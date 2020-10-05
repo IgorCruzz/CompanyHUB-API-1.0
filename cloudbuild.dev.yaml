@@ -18,25 +18,25 @@ steps:
          '--build-arg',
          'MAIL_SERVICE=${_MAIL_SERVICE}',            
          '-t', 
-         'gcr.io/company-hub-286820/fullcycle:latest', 
+         'gcr.io/$PROJECT_ID/fullcycle:latest', 
          '-t', 
-         'gcr.io/company-hub-286820/fullcycle:$SHORT_SHA', '-f',
+         'gcr.io/$PROJECT_ID/fullcycle:$SHORT_SHA', '-f',
          'Dockerfile.dev', '.' ]
       
    
 
   #CREATE AN CONTAINER FROM FULLCYCLE IMAGE
 - name: 'docker'
-  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/company-hub-286820/fullcycle:latest'] 
+  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/$PROJECT_ID/fullcycle:latest'] 
   
 - name: 'docker'
-  args: ['exec', 'companyHUB', 'npm', 'run', 'lint'] 
+  args: ['exec', 'companyHUB', 'yarn',  'lint'] 
 
   
 - name: 'docker'
-  args: ['exec', 'companyHUB', 'npm', 'run', 'lint']
+  args: ['exec', 'companyHUB', 'yarn', 'lint']
 
 - name: 'docker'
-  args: ['exec', 'companyHUB', 'npm', 'run', 'test']
+  args: ['exec', 'companyHUB', 'yarn', 'test']
 
  
