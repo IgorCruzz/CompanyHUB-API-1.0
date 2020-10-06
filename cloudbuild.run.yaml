@@ -1,5 +1,7 @@
 steps: 
-- name: 'gcr.io/cloud-builders/docker'
+
+- id: BUILD
+  name: 'gcr.io/cloud-builders/docker'
   args: [ 'build',  
          '--build-arg',
          'DB_HOST=${_DB_HOST}', 
@@ -21,22 +23,28 @@ steps:
          'gcr.io/$PROJECT_ID/fullcycle:$SHORT_SHA', '.' ]   
   
  
-- name: 'docker'
+- id: RUN
+  name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/$PROJECT_ID/fullcycle:latest']  
 
-- name: 'docker'
+- id: ESLINT
+  name: 'docker'
   args: ['exec', 'companyHUB', 'yarn', 'lint']
 
-- name: 'docker'
-  args: ['exec', 'companyHUB', 'yarn', 'test  
+- id: TEST
+  name: 'docker'
+  args: ['exec', 'companyHUB', 'yarn', 'test'] 
  
-- name: 'docker'
+- id: PUSH:LATEST
+  name: 'docker'
   args: ['push', 'gcr.io/$PROJECT_ID/fullcycle:latest']
 
-- name: 'docker'
+- id: PUSH:VERSION
+  name: 'docker'
   args: ['push', 'gcr.io/$PROJECT_ID/fullcycle:$SHORT_SHA'] 
 
-- name: 'gcr.io/cloud-builders/gcloud'
+- id: DEPLOY 
+  name: 'gcr.io/cloud-builders/gcloud'
   args: ['run', 
         'deploy', 
         'aaaaaaaaa', 
