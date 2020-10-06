@@ -47,7 +47,7 @@ steps:
   name: 'gcr.io/cloud-builders/gcloud'
   args: ['run', 
         'deploy', 
-        'aaaaaaaaa', 
+        'cpnhub', 
         '--image', 
         'gcr.io/$PROJECT_ID/fullcycle:$SHORT_SHA',
         '--region',
