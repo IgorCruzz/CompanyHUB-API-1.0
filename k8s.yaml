@@ -16,7 +16,8 @@ spec:
         - name: companyhub
           image: 'gcr.io/company-hub-286820/fullcycle:latest'
           ports:
-            - containerPort: 8080                            
+            - containerPort: 8080  
+      restartPolicy: Always                                
                           
 ---
 
