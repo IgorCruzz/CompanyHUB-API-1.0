@@ -1,7 +1,8 @@
 steps:
 
-  #CREATE AN IMAGE FROM DOCKERFILE
-- name: 'gcr.io/cloud-builders/docker'
+  
+- id: BUILD
+  name: 'gcr.io/cloud-builders/docker'
   args: [ 'build',  
          '--build-arg',
          'DB_HOST=${_DB_HOST}', 
@@ -22,21 +23,19 @@ steps:
          '-t', 
          'gcr.io/$PROJECT_ID/fullcycle:$SHORT_SHA', '-f',
          'Dockerfile.dev', '.' ]
-      
-   
-
-  #CREATE AN CONTAINER FROM FULLCYCLE IMAGE
-- name: 'docker'
+          
+- id: DOCKER RUN
+  name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/$PROJECT_ID/fullcycle:latest'] 
   
-- name: 'docker'
+- id: ESLINT 
+  name: 'docker'
   args: ['exec', 'companyHUB', 'yarn',  'lint'] 
 
   
-- name: 'docker'
-  args: ['exec', 'companyHUB', 'yarn', 'lint']
-
-- name: 'docker'
+- id: TEST
+  name: 'docker'
   args: ['exec', 'companyHUB', 'yarn', 'test']
 
+ 
  

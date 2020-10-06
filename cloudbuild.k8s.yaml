@@ -1,6 +1,7 @@
 steps:
    
-- name: 'gcr.io/cloud-builders/docker'
+- id: BUILD
+  name: 'gcr.io/cloud-builders/docker'
   args: [ 'build',  
          '--build-arg',
          'DB_HOST=${_DB_HOST}', 
