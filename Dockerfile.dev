@@ -9,6 +9,7 @@ COPY package*.json \
  ./
  
 RUN yarn
+
 ARG URL
 ARG DB_HOST
 ARG DB_USER
