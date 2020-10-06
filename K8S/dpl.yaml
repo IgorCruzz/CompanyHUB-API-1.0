@@ -1,19 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: companyhub
+  name: companyhubbackend
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: companyhub
+      app: companyhubbackend
   template:
     metadata:
       labels:
-        app: companyhub
+        app: companyhubbackend
     spec:
       containers:
-        - name: companyhub
-          image: 'gcr.io/$PROJECT_ID/fullcycle:latest'
+        - name: companyhubbackend
+          image: 'gcr.io/company-hub-286820/fullcycle:638bcfa'
           ports:
             - containerPort: 8080  
+      restartPolicy: Always      

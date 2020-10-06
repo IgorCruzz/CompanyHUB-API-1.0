@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: companyhub-service
+    name: companyhubbackend-service
     labels:
-      app: companyhub
+      app: companyhubbackend
 spec:
   type: LoadBalancer
   ports:
@@ -12,4 +12,4 @@ spec:
         port: 80
         targetPort: 8080
   selector:
-      app: companyhub 
+      app: companyhubbackend 

@@ -49,8 +49,8 @@ steps:
     'set',
     'image',
     'deployment',
-    'companyhub',
-    'companyhub=gcr.io/$PROJECT_ID/fullcycle:$SHORT_SHA'
+    'companyhubbackend',
+    'companyhubbackend=gcr.io/$PROJECT_ID/fullcycle:$SHORT_SHA'
   ]    
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
