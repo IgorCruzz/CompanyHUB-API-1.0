@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: companyhubbackend
-          image: 'gcr.io/company-hub-286820/fullcycle:638bcfa'
+          image: 'gcr.io/airy-cortex-291920/backend:latest'
           ports:
             - containerPort: 8080  
       restartPolicy: Always      
