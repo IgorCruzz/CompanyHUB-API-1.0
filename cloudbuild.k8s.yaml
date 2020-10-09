@@ -29,7 +29,7 @@ steps:
   
 - id: ESLINT
   name: 'docker'
-  args: ['exec', 'companyHUB', 'yarn', 'migration:run'  
+  args: ['exec', 'companyHUB', 'yarn', 'migration:run']
 
 - id: ESLINT
   name: 'docker'
