@@ -27,6 +27,10 @@ steps:
   name: 'docker'
   args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/$PROJECT_ID/backend:latest'] 
   
+- id: BUILD
+  name: 'docker',
+  args: ['exec', 'companyHUB', 'yarn', 'build']
+
 - id: MIGRATION
   name: 'docker'
   args: ['exec', 'companyHUB', 'yarn', 'migration:run']
