@@ -37,11 +37,11 @@ steps:
  
 - id: PUSH:LATEST
   name: 'docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/fullcycle:latest']
+  args: ['push', 'gcr.io/$PROJECT_ID/backend:latest']
 
 - id: PUSH:VERSION
   name: 'docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/fullcycle:$SHORT_SHA'] 
+  args: ['push', 'gcr.io/$PROJECT_ID/backend:$SHORT_SHA'] 
 
 - id: DEPLOY
   name: 'gcr.io/cloud-builders/kubectl'
@@ -50,11 +50,11 @@ steps:
     'image',
     'deployment',
     'companyhubbackend',
-    'companyhubbackend=gcr.io/$PROJECT_ID/fullcycle:$SHORT_SHA'
+    'companyhubbackend=gcr.io/$PROJECT_ID/backend:$SHORT_SHA'
   ]    
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=chbackend'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=companyhub'
     
   
 
