@@ -18,14 +18,14 @@ steps:
          '--build-arg',
          'MAIL_SERVICE=${_MAIL_SERVICE}',            
          '-t', 
-         'gcr.io/$PROJECT_ID/fullcycle:latest', 
+         'gcr.io/$PROJECT_ID/backend:latest', 
          '-t', 
-         'gcr.io/$PROJECT_ID/fullcycle:$SHORT_SHA', '.' ]   
+         'gcr.io/$PROJECT_ID/backend:$SHORT_SHA', '.' ]   
   
  
 - id: RUN
   name: 'docker'
-  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/$PROJECT_ID/fullcycle:latest']  
+  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/$PROJECT_ID/backend:latest']  
 
 - id: ESLINT
   name: 'docker'
