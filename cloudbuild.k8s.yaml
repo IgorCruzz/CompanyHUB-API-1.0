@@ -25,15 +25,7 @@ steps:
 
 - id: RUN
   name: 'docker'
-  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/$PROJECT_ID/backend:latest'] 
-  
-- id: BUILDa
-  name: 'docker',
-  args: ['exec', 'companyHUB', 'yarn', 'build']
-
-- id: MIGRATION
-  name: 'docker'
-  args: ['exec', 'companyHUB', 'yarn', 'migration:run']
+  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/$PROJECT_ID/backend:latest']  
 
 - id: ESLINT
   name: 'docker'
