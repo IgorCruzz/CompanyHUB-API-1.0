@@ -5,7 +5,7 @@ metadata:
     labels:
       app: companyhubbackend
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
       - protocol: TCP
         name: http-svc

@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { CompanyModule } from './company/company.module'
 import { UserModule } from './user/user.module'
 import { Module } from '@nestjs/common'
+import { AppController } from './app.controller'
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { Module } from '@nestjs/common'
     UserModule,
     CompanyModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {
   constructor(private connection: Connection) {}

@@ -1,9 +1,8 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: subdominio
+  name: backend-ingress
 spec: 
   backend:
-    serviceName: companyhub-service
+    serviceName: companyhubbackend-service
     servicePort: 80
- 
