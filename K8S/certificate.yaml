@@ -1,9 +1,11 @@
-apiVersion: networking.gke.io/v1beta1
+apiVersion: networking.gke.io/v1beta2
 kind: ManagedCertificate
 metadata:
   name: backend-certificate
 spec:
   domains:
     - companyhub.tk
+    - www.companyhub.tk
+    - api.companyhub.tk
 
 
