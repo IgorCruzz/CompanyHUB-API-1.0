@@ -2,7 +2,8 @@
 Sistema para gerenciamento de produtos empresariais.
 
 Tecnologias utilizadas 
- 
+
+demo: https://www.companyhub.tk/ 
 
 Backend:
  
