@@ -8,7 +8,7 @@ class Mail {
   transporter: any
   constructor() {
     this.transporter = createTransport({
-      service: 'SendGrid',
+      service: 'SendinBlue',
       auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,
