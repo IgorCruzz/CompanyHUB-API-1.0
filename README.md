@@ -1,13 +1,12 @@
 # CompanyHUB
+
 Sistema para gerenciamento de produtos empresariais.
 
-Tecnologias utilizadas 
-
-demo: https://www.companyhub.tk/ 
+Tecnologias utilizadas
 
 Backend:
- 
-- Solid 
+
+- Solid
 - Kubernetes
 - Docker
 - Google Cloud (CI/ CD)
