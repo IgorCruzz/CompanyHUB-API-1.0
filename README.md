@@ -3,7 +3,6 @@
 Sistema para gerenciamento de produtos empresariais.
 
 Tecnologias utilizadas
-
 Backend:
 
 - Solid
